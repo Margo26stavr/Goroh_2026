@@ -204,7 +204,8 @@ let cmpMode = 'yield';
 
 // ======= АВТОЗАГРУЗКА EXCEL =======
 // Имя файла Excel в репозитории — измените если у вас другое имя
-const EXCEL_FILENAME = 'otchet_2026.xlsx';
+const REPO = 'Margo26stavr/Goroh_2026';
+  const EXCEL_FILENAME = `https://cdn.jsdelivr.net/gh/${REPO}@main/otchet_2026.xlsx?v=${Date.now()}`;
 
 async function autoLoad() {
   try {
@@ -218,7 +219,7 @@ async function autoLoad() {
     let arrayBuffer = null;
     for (const name of names) {
       try {
-        const res = await fetch(name + '?nocache=' + Date.now());
+        const res = await fetch(name);
         if (res.ok) { arrayBuffer = await res.arrayBuffer(); break; }
       } catch(e) {}
     }
