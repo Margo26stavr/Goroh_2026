@@ -241,7 +241,9 @@ function parse(wb) {
   const util   = +cv(s26,34,1)||0;
   const realiz = +cv(s26,35,1)||0;
   const ownRaw = +cv(s26,36,1)||0;
-  const dayNum = +cv(s26,1,8) || 0;
+  // День уборки — из листа ОТЧЕТ 2026, строка 30 col 4
+  const sOtch = wb.Sheets['ОТЧЕТ 2026'];
+  const dayNum = sOtch ? (+cv(sOtch,30,4)||0) : 0;
 
   // ─── Культуры 2026 (детальная таблица строки 53-57) ───
   const cults26 = [];
@@ -375,8 +377,11 @@ function parse(wb) {
 
 // ── ИНИЦИАЛИЗАЦИЯ ──────────────────────────────────────────
 function init() {
-  document.getElementById('dbadge').textContent = 'День ' + (D.dayNum || D.daily26all.filter(x=>x.val).length);
-  const last = D.daily26all.filter(x=>x.val).pop();
+  const dayN = D.dayNum || D.daily26all.filter(x=>x.val).length;
+  document.getElementById('dbadge').textContent = 'День ' + dayN;
+  // Последняя дата с фактическими данными о сборе
+  const withVal = D.daily26all.filter(x=>x.val && x.val > 0);
+  const last = withVal.length ? withVal[withVal.length-1] : null;
   if (last) document.getElementById('hsub').textContent = 'По состоянию на ' + fmtDate(last.date);
   buildChips();
   renderAll();
@@ -508,33 +513,30 @@ function renderFino() {
     `<div class="li2"><span class="dot" style="background:${f.color}"></span>${f.label}: <strong style="margin-left:3px">${N(f.value)} тн</strong></div>`).join('');
 }
 
-// ── ЕЖЕДНЕВНО ─────────────────────────────────────────────
+// ── ЕЖЕДНЕВНО — всегда общие данные, без фильтра культур ──
 function renderDaily() {
-  const rows = getDailyFiltered(D.daily26byCult, D.daily26all);
-  const maxV = Math.max(...rows.map(r=>r.val||0), 1);
-  const total = rows.reduce((s,r)=>s+(r.val||0), 0);
-  const cultName = aCult!=='all' ? D.cults26[+aCult]?.name : null;
+  // Всегда берём общий суточный сбор по всем культурам
+  const rows = D.daily26all.filter(r => r.date && (r.val || r.fino));
+  const withVal = rows.filter(r => r.val && r.val > 0);
+  const maxV = Math.max(...withVal.map(r=>r.val), 1);
+  const total = withVal.reduce((s,r)=>s+(r.val||0), 0);
 
   document.getElementById('dinfo').innerHTML =
-    (cultName?`<strong>${cultName}</strong> · `:``) +
-    `<strong>Итого:</strong> ${N(total)} тн · <strong>Дней:</strong> ${rows.filter(r=>r.val).length}`;
-
-  // Цвет бара по культуре
-  const barColor = aCult!=='all' ? '#2d6a2d' : '#4a9b3f';
+    `<strong>Итого за сезон:</strong> ${N(total)} тн · <strong>Дней с данными:</strong> ${withVal.length}`;
 
   document.getElementById('dlist').innerHTML = rows.length
-    ? rows.map(r=>{
-        const w = r.val ? Math.round(r.val/maxV*100) : 0;
+    ? rows.map(r => {
+        const w = r.val && r.val > 0 ? Math.round(r.val/maxV*100) : 0;
         return `<div class="di">
           <div class="dd">${fmtDate(r.date)}</div>
           <div class="dw">
-            <div class="dbg"><div class="dbar" style="width:${w}%;background:${barColor}"></div></div>
-            ${r.fino?`<div class="df">Финометр: ${(+r.fino).toFixed(1)}</div>`:''}
+            <div class="dbg"><div class="dbar" style="width:${w}%;background:#4a9b3f"></div></div>
+            ${r.fino ? `<div class="df">Финометр: ${(+r.fino).toFixed(1)}</div>` : ''}
           </div>
-          <div class="dv">${r.val?N(r.val)+' тн':'—'}</div>
+          <div class="dv">${r.val && r.val > 0 ? N(r.val)+' тн' : '—'}</div>
         </div>`;
       }).join('')
-    : '<div class="empty">Нет данных по выбранной культуре</div>';
+    : '<div class="empty">Нет данных</div>';
 }
 
 // ── ДИНАМИКА ──────────────────────────────────────────────
