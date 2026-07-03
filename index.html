@@ -1,40 +1,28 @@
 <!DOCTYPE html>
-<!-- saved from url=(0070)file:///C:/Users/%D0%9C%D0%B0%D1%80%D0%B3%D0%BE/Downloads/index_3.html -->
-<html lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Горошек 2026 — Оперативный отчёт</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
-:root {
-  --gd:#2d6a2d;--gm:#4a9b3f;--gl:#7ec86b;--gp:#d4edca;--gbg:#f0f7ec;
-  --yw:#e8a920;--rd:#c0392b;--td:#1a2e1a;--tm:#4a5e4a;--tl:#8a9e8a;
-  --w:#fff;--sh:0 2px 12px rgba(45,106,45,0.13);--r:14px;
-}
+:root{--gd:#2d6a2d;--gm:#4a9b3f;--gl:#7ec86b;--gp:#d4edca;--gbg:#f0f7ec;--yw:#e8a920;--rd:#c0392b;--td:#1a2e1a;--tm:#4a5e4a;--tl:#8a9e8a;--w:#fff;--sh:0 2px 12px rgba(45,106,45,0.13);--r:14px}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{font-family:-apple-system,'Segoe UI',sans-serif;background:var(--gbg);color:var(--td);min-height:100vh}
 body{max-width:440px;margin:0 auto}
-
-/* LOADING */
 #loadScreen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:32px 24px;text-align:center}
 .load-icon{font-size:56px;margin-bottom:16px;animation:pulse 1.5s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
 .load-title{font-size:17px;font-weight:700;color:var(--gd);margin-bottom:8px}
 .load-sub{font-size:13px;color:var(--tm);line-height:1.5}
 #loadErr{display:none;margin-top:16px;background:#fde8e6;border-radius:10px;padding:12px 16px;font-size:12px;color:var(--rd);line-height:1.5}
-
-/* APP */
 #app{display:none}
-
-/* HEADER */
 .hdr{background:linear-gradient(135deg,var(--gd) 0%,var(--gm) 100%);padding:16px 16px 12px;position:sticky;top:0;z-index:100;box-shadow:0 3px 16px rgba(45,106,45,0.28)}
 .hdr-row{display:flex;align-items:center;justify-content:space-between}
 .hdr h1{font-size:14px;font-weight:700;color:#fff;letter-spacing:.2px}
 .hdr p{font-size:11px;color:rgba(255,255,255,.65);margin-top:2px}
 .day-badge{background:rgba(255,255,255,.2);color:#fff;font-size:12px;font-weight:600;padding:4px 10px;border-radius:20px;white-space:nowrap}
-
-/* FILTERS */
 .flt{background:var(--w);padding:10px 14px 10px;border-bottom:1px solid var(--gp)}
 .flt-lbl{font-size:10px;color:var(--tl);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px}
 .chips{display:flex;gap:5px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
@@ -45,12 +33,8 @@ body{max-width:440px;margin:0 auto}
 .chips2{display:flex;gap:5px;margin-top:6px}
 .chip2{flex-shrink:0;padding:3px 10px;border-radius:14px;border:1.5px solid var(--gp);background:var(--w);color:var(--tm);font-size:11px;font-weight:500;cursor:pointer;transition:.18s;user-select:none}
 .chip2.active{background:var(--gp);border-color:var(--gl);color:var(--gd)}
-
-/* BODY */
 .body{padding:12px 13px 80px}
 .tab{display:none}.tab.active{display:block}
-
-/* KPI */
 .kpi{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:11px}
 .kc{background:var(--w);border-radius:var(--r);padding:13px 11px;box-shadow:var(--sh);position:relative;overflow:hidden}
 .kc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gl)}
@@ -61,11 +45,7 @@ body{max-width:440px;margin:0 auto}
 .kc-plan{font-size:11px;color:var(--tm);margin-top:3px}
 .badge{display:inline-block;font-size:11px;font-weight:700;padding:2px 7px;border-radius:10px;margin-top:4px}
 .b-r{background:#fde8e6;color:var(--rd)}.b-g{background:#e6f4e3;color:var(--gd)}.b-y{background:#fef4e0;color:var(--yw)}
-
-/* SECTION */
 .st{font-size:11px;font-weight:700;color:var(--tm);text-transform:uppercase;letter-spacing:.6px;margin:15px 0 7px}
-
-/* PROGRESS */
 .prog-card{background:var(--w);border-radius:var(--r);padding:13px;box-shadow:var(--sh);margin-bottom:10px}
 .pr{margin-bottom:13px}.pr:last-child{margin-bottom:0}
 .pr-hdr{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
@@ -74,22 +54,16 @@ body{max-width:440px;margin:0 auto}
 .pr-bg{height:9px;background:var(--gp);border-radius:5px;overflow:hidden}
 .pr-bar{height:100%;background:linear-gradient(90deg,var(--gm),var(--gl));border-radius:5px;transition:width .5s ease}
 .pr-bar.hatch{background:repeating-linear-gradient(45deg,#c8e6c0,#c8e6c0 4px,var(--gp) 4px,var(--gp) 8px);width:100%!important}
-
-/* RAW */
 .raw{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
 .ri{background:var(--w);border-radius:10px;padding:10px;box-shadow:var(--sh)}
 .ri-lbl{font-size:10px;color:var(--tl);margin-bottom:2px}
 .ri-val{font-size:17px;font-weight:800;color:var(--gd)}
 .ri-val span{font-size:11px;font-weight:400;color:var(--tm)}
-
-/* CHART */
 .cc{background:var(--w);border-radius:var(--r);padding:13px 11px;box-shadow:var(--sh);margin-bottom:10px}
 .cc-t{font-size:12px;font-weight:700;color:var(--td);margin-bottom:9px}
 .fl{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}
 .fi{display:flex;align-items:center;font-size:11px;color:var(--tm)}
 .fd{width:10px;height:10px;border-radius:50%;margin-right:4px;flex-shrink:0}
-
-/* DAILY */
 .dl{display:flex;flex-direction:column;gap:6px}
 .di{background:var(--w);border-radius:10px;padding:10px 12px;box-shadow:var(--sh);display:flex;align-items:center;gap:10px}
 .dd{min-width:52px;font-size:11px;color:var(--tl)}
@@ -98,39 +72,30 @@ body{max-width:440px;margin:0 auto}
 .db{height:100%;background:var(--gm);border-radius:4px}
 .dv{font-size:12px;font-weight:700;color:var(--gd);min-width:58px;text-align:right}
 .df{font-size:10px;color:var(--tl);margin-top:2px}
-
-/* INFO BOX */
 .ib{background:var(--gp);border-left:3px solid var(--gm);border-radius:8px;padding:9px 11px;font-size:12px;color:var(--tm);margin-bottom:10px;line-height:1.5}
 .ib strong{color:var(--gd)}
-
-/* BOTTOM NAV */
+.ib.note{background:#fff8e1;border-color:var(--yw)}
 .bnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:440px;background:var(--w);border-top:1px solid var(--gp);display:flex;justify-content:space-around;padding:7px 0 10px;z-index:200}
 .nb{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px;color:var(--tl);cursor:pointer;padding:3px 12px;transition:color .18s;user-select:none}
 .nb.active{color:var(--gm)}
 .ni{font-size:20px;line-height:1}
-
-/* COMPARE */
 .cmp-toggle{display:flex;gap:6px;margin-bottom:10px}
-.ct-btn{flex:1;padding:7px;border-radius:10px;border:1.5px solid var(--gl);background:var(--w);color:var(--gd);font-size:12px;font-weight:600;cursor:pointer;text-align:center;transition:.18s;user-select:none}
+.ct-btn{flex:1;padding:7px;border-radius:10px;border:1.5px solid var(--gl);background:var(--w);color:var(--gd);font-size:11px;font-weight:600;cursor:pointer;text-align:center;transition:.18s;user-select:none}
 .ct-btn.active{background:var(--gm);border-color:var(--gm);color:#fff}
-
 .empty{color:var(--tl);font-size:13px;text-align:center;padding:18px}
+/* культурный тег в сводке */
+.cult-tag{display:inline-block;background:var(--gp);color:var(--gd);font-size:10px;font-weight:600;padding:2px 7px;border-radius:8px;margin-left:4px;vertical-align:middle}
 </style>
 </head>
 <body>
 
-<!-- LOADING -->
 <div id="loadScreen">
-  <div class="load-icon" style="animation: 0s ease 0s 1 normal none running none;">⚠️</div>
-  <div class="load-title">Не удалось загрузить данные</div>
+  <div class="load-icon">🌿</div>
+  <div class="load-title">Загрузка отчёта…</div>
   <div class="load-sub">Читаем актуальные данные из файла Excel</div>
-  <div id="loadErr" style="display: block;">
-    ⚠️ Не удалось загрузить данные.<br>
-    Убедитесь что файл <strong>otchet_2026.xlsx</strong> загружен в репозиторий GitHub рядом с index.html
-  </div>
+  <div id="loadErr">⚠️ Не удалось загрузить данные.<br>Убедитесь что файл <strong>otchet_2026.xlsx</strong> загружен в репозиторий GitHub рядом с index.html</div>
 </div>
 
-<!-- APP -->
 <div id="app">
   <div class="hdr">
     <div class="hdr-row">
@@ -149,92 +114,92 @@ body{max-width:440px;margin:0 auto}
   </div>
 
   <div class="body">
+
+    <!-- СВОДКА -->
     <div class="tab active" id="tab-main">
       <div class="kpi" id="kpiGrid"></div>
       <div class="st">Выполнение плана по культурам</div>
       <div class="prog-card" id="progCards"></div>
-      <div class="st">Информация по сырью</div>
-      <div class="raw" id="rawGrid"></div>
-      <div class="cc">
-        <div class="cc-t">Финометр: распределение сырья</div>
-        <div style="position:relative;height:195px"><canvas id="cFino"></canvas></div>
-        <div class="fl" id="finoLeg"></div>
+      <div id="rawSection">
+        <div class="st">Информация по сырью</div>
+        <div class="raw" id="rawGrid"></div>
+        <div class="cc">
+          <div class="cc-t">Финометр: распределение сырья</div>
+          <div style="position:relative;height:195px"><canvas id="cFino"></canvas></div>
+          <div class="fl" id="finoLeg"></div>
+        </div>
       </div>
     </div>
 
+    <!-- ПО ДНЯМ -->
     <div class="tab" id="tab-daily">
       <div class="ib" id="dailyInfo"></div>
+      <div class="ib note" id="dailyNote" style="display:none">
+        ℹ️ Суточные данные в Excel не разбиты по культурам — показан общий сбор по хозяйству
+      </div>
       <div class="dl" id="dailyList"></div>
     </div>
 
+    <!-- ДИНАМИКА -->
     <div class="tab" id="tab-compare">
       <div class="cmp-toggle">
-        <div class="ct-btn active" onclick="setCmpMode(&#39;yield&#39;,this)">Урожайность</div>
-        <div class="ct-btn" onclick="setCmpMode(&#39;total&#39;,this)">Валовый сбор</div>
-        <div class="ct-btn" onclick="setCmpMode(&#39;daily&#39;,this)">По дням</div>
+        <div class="ct-btn active" onclick="setCmpMode('yield',this)">Урожайность</div>
+        <div class="ct-btn" onclick="setCmpMode('total',this)">Валовый сбор</div>
+        <div class="ct-btn" onclick="setCmpMode('daily',this)">По дням</div>
       </div>
       <div class="cc" id="cmpCard">
         <div class="cc-t" id="cmpTitle"></div>
         <div style="position:relative;height:240px"><canvas id="cCompare"></canvas></div>
       </div>
       <div class="cc" id="cmpDailyCard" style="display:none">
-        <div class="cc-t">Ежедневный сбор: 2025 vs 2026</div>
+        <div class="cc-t" id="cmpDailyTitle">Ежедневный сбор: 2025 vs 2026</div>
         <div style="position:relative;height:260px"><canvas id="cDailyComp"></canvas></div>
         <div class="fl">
           <div class="fi"><span class="fd" style="background:#2d6a2d"></span>2026</div>
           <div class="fi"><span class="fd" style="background:#7ec86b"></span>2025</div>
         </div>
       </div>
+      <div class="ib note" id="cmpDailyNote" style="display:none">
+        ℹ️ Суточные данные не разбиты по культурам — показан общий сбор
+      </div>
       <div class="ib" id="cmpInsight"></div>
     </div>
+
   </div>
 
   <div class="bnav">
-    <div class="nb active" onclick="switchTab(&#39;main&#39;,this)"><div class="ni">📊</div><div>Сводка</div></div>
-    <div class="nb" onclick="switchTab(&#39;daily&#39;,this)"><div class="ni">📅</div><div>По дням</div></div>
-    <div class="nb" onclick="switchTab(&#39;compare&#39;,this)"><div class="ni">📈</div><div>Динамика</div></div>
+    <div class="nb active" onclick="switchTab('main',this)"><div class="ni">📊</div><div>Сводка</div></div>
+    <div class="nb" onclick="switchTab('daily',this)"><div class="ni">📅</div><div>По дням</div></div>
+    <div class="nb" onclick="switchTab('compare',this)"><div class="ni">📈</div><div>Динамика</div></div>
   </div>
 </div>
 
 <script>
+// ======= КОНФИГ =======
+const REPO = 'Margo26stavr/Goroh_2026';
+const EXCEL_FILE = `https://raw.githubusercontent.com/${REPO}/main/otchet_2026.xlsx`;
+
+// ======= СОСТОЯНИЕ =======
 let D = {};
-let activeCult = 'all', activeIrrig = 'all';
-let cChart = null, dChart = null, finoChart = null;
+let activeCult = 'all'; // 'all' или индекс культуры (0,1,2,3)
+let activeIrrig = 'all';
 let cmpMode = 'yield';
+let finoChart = null, cChart = null, dChart = null;
 
-// ======= АВТОЗАГРУЗКА EXCEL =======
-// Имя файла Excel в репозитории — измените если у вас другое имя
-
-  const EXCEL_FILENAME = 'https://raw.githubusercontent.com/Margo26stavr/Goroh_2026/main/otchet_2026.xlsx';
-
+// ======= ЗАГРУЗКА =======
 async function autoLoad() {
   try {
-    // Пробуем несколько возможных имён файла
-    const names = [
-      EXCEL_FILENAME,
-      'Отчет_по_уборке__горошек_овощной__-_03-08_06_2026.xlsx',
-      encodeURIComponent('Отчет по уборке (горошек овощной) - 03-08_06_2026.xlsx')
-    ];
-
-    let arrayBuffer = null;
-    for (const name of names) {
-      try {
-        const res = await fetch(name + (name.includes('?') ? '&' : '?') + 't=' + Date.now(), {cache: 'no-store'});
-        if (res.ok) { arrayBuffer = await res.arrayBuffer(); break; }
-      } catch(e) {}
-    }
-
-    if (!arrayBuffer) throw new Error('file not found');
-
-    const wb = XLSX.read(arrayBuffer, {type:'array', cellDates:true});
+    const res = await fetch(EXCEL_FILE + '?t=' + Date.now(), {cache:'no-store'});
+    if (!res.ok) throw new Error('fetch failed');
+    const buf = await res.arrayBuffer();
+    const wb = XLSX.read(buf, {type:'array', cellDates:true});
     if (!wb.SheetNames.includes('Данные 2026')) throw new Error('no sheet');
-
     D = parseWorkbook(wb);
     buildApp();
     document.getElementById('loadScreen').style.display = 'none';
     document.getElementById('app').style.display = 'block';
-  } catch(err) {
-    console.error(err);
+  } catch(e) {
+    console.error(e);
     document.querySelector('.load-icon').textContent = '⚠️';
     document.querySelector('.load-icon').style.animation = 'none';
     document.querySelector('.load-title').textContent = 'Не удалось загрузить данные';
@@ -242,9 +207,9 @@ async function autoLoad() {
   }
 }
 
-// ======= PARSE =======
+// ======= ПАРСИНГ =======
 function rv(sheet, r, c) {
-  const cell = sheet[XLSX.utils.encode_cell({r,c})];
+  const cell = sheet[XLSX.utils.encode_cell({r, c})];
   return cell ? cell.v : null;
 }
 
@@ -252,47 +217,72 @@ function parseWorkbook(wb) {
   const s26 = wb.Sheets['Данные 2026'];
   const s25 = wb.Sheets['Данные 2025'];
 
-  const planVal   = rv(s26,3,1);
-  const factVal   = rv(s26,4,1);
-  const planArea  = rv(s26,14,1);
-  const factArea  = rv(s26,15,1);
-  const restArea  = rv(s26,16,1);
-  const planYield = rv(s26,22,1);
-  const factYield = rv(s26,23,1);
-  const perek     = rv(s26,33,1);
-  const util      = rv(s26,34,1);
-  const realiz    = rv(s26,35,1);
-  const ownRaw    = rv(s26,36,1);
+  // КПИ общие (строки 3-5, 14-17, 22-23, 33-37)
+  const planVal   = +rv(s26,3,1)||0;
+  const factVal   = +rv(s26,4,1)||0;
+  const planArea  = +rv(s26,14,1)||0;
+  const factArea  = +rv(s26,15,1)||0;
+  const restArea  = +rv(s26,16,1)||0;
+  const planYield = +rv(s26,22,1)||0;
+  const factYield = +rv(s26,23,1)||0;
+  const perek     = +rv(s26,33,1)||0;
+  const util      = +rv(s26,34,1)||0;
+  const realiz    = +rv(s26,35,1)||0;
+  const ownRaw    = +rv(s26,36,1)||0;
 
+  // Культуры — детальная таблица строки 53-57 (col 0=назв, 1=ор, 2=план_вал, 3=факт_вал, 4=исп_вал, 5=план_га, 6=факт_га, 7=исп_га, 8=урож)
   const cultures = [];
-  const cultRows = [3,4,5,6];
-  const irrigMap = {3:'bogara',4:'poliv',5:'poliv',6:'poliv'};
-  for (const ri of cultRows) {
-    const nm = rv(s26,ri,3);
-    const pl = rv(s26,ri,4);
-    const fc = rv(s26,ri,5);
-    if (nm) cultures.push({name:nm, plan:pl||0, fact:fc||0, irrig:irrigMap[ri]});
+  const irrigMap = {0:'bogara',1:'poliv',2:'poliv',3:'poliv'};
+  for (let ri = 54; ri <= 57; ri++) {
+    const nm   = rv(s26,ri,0);
+    const irr  = rv(s26,ri,1);
+    const plV  = +rv(s26,ri,2)||0;
+    const fcV  = +rv(s26,ri,3)||0;
+    const plA  = +rv(s26,ri,5)||0;
+    const fcA  = +rv(s26,ri,6)||0;
+    const yld  = +rv(s26,ri,8)||0;
+    if (nm) cultures.push({
+      name: nm,
+      irrig: irr && irr.toString().toLowerCase().includes('бог') ? 'bogara' : 'poliv',
+      planVal: plV, factVal: fcV,
+      planArea: plA, factArea: fcA,
+      yield: yld
+    });
   }
 
+  // Если детальная таблица пустая — fallback на строки 3-6
+  if (!cultures.length || !cultures[0].name) {
+    cultures.length = 0;
+    for (let ri = 3; ri <= 6; ri++) {
+      const nm = rv(s26,ri,3);
+      const pl = +rv(s26,ri,4)||0;
+      const fc = +rv(s26,ri,5)||0;
+      if (nm) cultures.push({name:nm, irrig:irrigMap[ri-3]||'poliv', planVal:pl, factVal:fc, planArea:0, factArea:0, yield:0});
+    }
+  }
+
+  // История 2019-2026
   const hist = [];
   for (let ri = 14; ri <= 21; ri++) {
     const yr = rv(s26,ri,3);
-    const yi = rv(s26,ri,5);
-    const tt = rv(s26,ri,6);
-    if (yr && yi) hist.push({year:yr, yield:+yi, total:+tt});
+    const yi = +rv(s26,ri,5)||0;
+    const tt = +rv(s26,ri,6)||0;
+    if (yr && yi) hist.push({year:+yr, yield:yi, total:tt});
   }
 
+  // Финометр строки 26-31
   const fino = [];
-  const finoColors = ['#4a9b3f','#7ec86b','#a8d89e','#c8e6c0'];
+  const finoColors = ['#4a9b3f','#7ec86b','#a8d89e','#c8e6c0','#d4edca','#e8f5e4'];
   let fi = 0;
   for (const ri of [26,27,28,29,30,31]) {
     const lbl = rv(s26,ri,3);
-    const wt  = rv(s26,ri,5);
-    const sh  = rv(s26,ri,6);
-    if (lbl && wt > 0) fino.push({label:lbl, value:+wt, pct:+(sh*100).toFixed(1), color:finoColors[fi%4]});
+    const wt  = +rv(s26,ri,5)||0;
+    const sh  = +rv(s26,ri,6)||0;
+    if (lbl && wt > 0) fino.push({label:lbl, value:wt, pct:+(sh*100).toFixed(1), color:finoColors[fi%6]});
     fi++;
   }
 
+  // Ежедневные данные 2026 (общие — col 9=дата, 10=сбор, 11=финометр)
   const daily26 = [];
   for (let ri = 3; ri <= 47; ri++) {
     const dt  = rv(s26,ri,9);
@@ -300,10 +290,11 @@ function parseWorkbook(wb) {
     const fv  = rv(s26,ri,11);
     if (dt) {
       const d = dt instanceof Date ? dt : new Date(Math.round((dt-25569)*86400*1000));
-      daily26.push({date:d, val:val||null, fino:fv||null});
+      if (!isNaN(d)) daily26.push({date:d, val:val||null, fino:fv||null});
     }
   }
 
+  // Ежедневные данные 2025
   const daily25 = [];
   if (s25) {
     for (let ri = 3; ri <= 55; ri++) {
@@ -312,7 +303,7 @@ function parseWorkbook(wb) {
       const fv  = rv(s25,ri,11);
       if (dt) {
         const d = dt instanceof Date ? dt : new Date(Math.round((dt-25569)*86400*1000));
-        daily25.push({date:d, val:val||null, fino:fv||null});
+        if (!isNaN(d)) daily25.push({date:d, val:val||null, fino:fv||null});
       }
     }
   }
@@ -320,23 +311,60 @@ function parseWorkbook(wb) {
   const dayNum = rv(s26,1,8) || daily26.filter(d=>d.val).length;
 
   return {
-    planVal:+planVal||0, factVal:+factVal||0,
-    planArea:+planArea||0, factArea:+factArea||0, restArea:+restArea||0,
-    planYield:+planYield||0, factYield:+factYield||0,
-    perek:+perek||0, util:+util||0, realiz:+realiz||0, ownRaw:+ownRaw||0,
+    // Общие итоги
+    planVal, factVal, planArea, factArea, restArea, planYield, factYield,
+    perek, util, realiz, ownRaw,
+    // Детализация
     cultures, hist, fino, daily26, daily25, dayNum
   };
 }
 
-// ======= BUILD =======
+// ======= ВЫЧИСЛЕНИЕ ДАННЫХ ПО ФИЛЬТРУ =======
+function getFiltered() {
+  const d = D;
+  let rows = d.cultures;
+
+  // Фильтр по культуре
+  if (activeCult !== 'all') rows = rows.filter((_,i) => String(i) === String(activeCult));
+  // Фильтр по орошению
+  if (activeIrrig !== 'all') rows = rows.filter(r => r.irrig === activeIrrig);
+
+  const isSingle = activeCult !== 'all' && rows.length === 1;
+
+  // Агрегированные значения по выбранным культурам
+  const aggPlanVal  = rows.reduce((s,r)=>s+r.planVal,0);
+  const aggFactVal  = rows.reduce((s,r)=>s+r.factVal,0);
+  const aggPlanArea = rows.reduce((s,r)=>s+r.planArea,0);
+  const aggFactArea = rows.reduce((s,r)=>s+r.factArea,0);
+  const aggRestArea = aggPlanArea - aggFactArea;
+  // Урожайность: средневзвешенная по площади или из одной культуры
+  let aggYield = 0;
+  if (aggFactArea > 0) aggYield = aggFactVal / aggFactArea;
+  else if (rows.length === 1 && rows[0].yield) aggYield = rows[0].yield;
+  // Плановая урожайность
+  const aggPlanYield = aggPlanArea > 0 ? aggPlanVal / aggPlanArea : d.planYield;
+  // Остаток площади
+  const restArea = aggPlanArea > 0 ? aggRestArea : d.restArea;
+
+  // Сырьё — только для «Все» (в Excel нет разбивки по культурам)
+  const showRaw = activeCult === 'all' && activeIrrig === 'all';
+
+  return {rows, aggPlanVal, aggFactVal, aggPlanArea, aggFactArea, restArea, aggYield, aggPlanYield, showRaw, isSingle};
+}
+
+// ======= ПОСТРОЕНИЕ ПРИЛОЖЕНИЯ =======
 function buildApp() {
   const d = D;
   document.getElementById('dayBadge').textContent = 'День ' + d.dayNum;
-  const lastDate = d.daily26.filter(x=>x.val).pop();
-  if (lastDate) document.getElementById('hdrSub').textContent = 'По состоянию на ' + fmt(lastDate.date);
+  const last = d.daily26.filter(x=>x.val).pop();
+  if (last) document.getElementById('hdrSub').textContent = 'По состоянию на ' + fmt(last.date);
 
   buildCultChips();
   buildIrrigChips();
+  renderAll();
+}
+
+function renderAll() {
   renderKPI();
   renderProg();
   renderRaw();
@@ -344,13 +372,21 @@ function buildApp() {
   renderDaily();
 }
 
+// ======= УТИЛИТЫ =======
 function fmt(dt) {
   if (!dt) return '';
   const d = dt instanceof Date ? dt : new Date(dt);
   return d.toLocaleDateString('ru-RU',{day:'numeric',month:'short'});
 }
-function fmtN(n) { return n!=null ? (+n).toLocaleString('ru',{maximumFractionDigits:1}) : '—'; }
+function fmtN(n) {
+  if (n == null || n === '' || isNaN(n)) return '—';
+  return (+n).toLocaleString('ru',{maximumFractionDigits:1});
+}
+function pctBadge(pct) {
+  return pct>=50?'b-g':pct>=15?'b-y':'b-r';
+}
 
+// ======= СРЕЗЫ =======
 function buildCultChips() {
   const names = ['Все', ...D.cultures.map(c=>c.name)];
   const vals  = ['all', ...D.cultures.map((_,i)=>i)];
@@ -359,35 +395,49 @@ function buildCultChips() {
   document.getElementById('cultChips').onclick = e => {
     const chip = e.target.closest('.chip'); if (!chip) return;
     document.querySelectorAll('#cultChips .chip').forEach(c=>c.classList.remove('active'));
-    chip.classList.add('active'); activeCult = chip.dataset.v; renderProg();
+    chip.classList.add('active');
+    activeCult = chip.dataset.v;
+    renderAll();
+    if (document.getElementById('tab-compare').classList.contains('active')) renderCompare();
   };
 }
 function buildIrrigChips() {
-  [{v:'all',l:'Все типы'},{v:'bogara',l:'Богара'},{v:'poliv',l:'Полив'}].forEach((o,i) => {
-    document.getElementById('irrigChips').innerHTML +=
-      `<div class="chip2${i===0?' active':''}" data-v="${o.v}">${o.l}</div>`;
+  [{v:'all',l:'Все типы'},{v:'bogara',l:'Богара'},{v:'poliv',l:'Полив'}].forEach((o,i)=>{
+    const el = document.createElement('div');
+    el.className = 'chip2' + (i===0?' active':'');
+    el.dataset.v = o.v;
+    el.textContent = o.l;
+    document.getElementById('irrigChips').appendChild(el);
   });
   document.getElementById('irrigChips').onclick = e => {
     const chip = e.target.closest('.chip2'); if (!chip) return;
     document.querySelectorAll('#irrigChips .chip2').forEach(c=>c.classList.remove('active'));
-    chip.classList.add('active'); activeIrrig = chip.dataset.v; renderProg();
+    chip.classList.add('active');
+    activeIrrig = chip.dataset.v;
+    renderAll();
+    if (document.getElementById('tab-compare').classList.contains('active')) renderCompare();
   };
 }
 
+// ======= КПИ =======
 function renderKPI() {
-  const d = D;
-  const pv = d.planVal ? d.factVal/d.planVal : 0;
-  const pa = d.planArea ? d.factArea/d.planArea : 0;
-  const dy = d.planYield ? (d.factYield-d.planYield)/d.planYield : 0;
+  const f = getFiltered();
+  const pv  = f.aggPlanVal  ? f.aggFactVal/f.aggPlanVal   : 0;
+  const pa  = f.aggPlanArea ? f.aggFactArea/f.aggPlanArea : 0;
+  const dy  = f.aggPlanYield ? (f.aggYield - f.aggPlanYield)/f.aggPlanYield : 0;
+  const restPct = f.aggPlanArea ? (f.aggPlanArea-f.aggFactArea)/f.aggPlanArea : 0;
+
   const kpis = [
-    {lbl:'Валовый сбор', val:fmtN(d.factVal), unit:'тн', plan:'план: '+fmtN(d.planVal)+' тн',
-     pct:Math.round(pv*100)+'%', bc:pv<0.3?'b-r':pv<0.6?'b-y':'b-g', cc:'warn'},
-    {lbl:'Площадь уборки', val:fmtN(d.factArea), unit:'га', plan:'план: '+fmtN(d.planArea)+' га',
-     pct:Math.round(pa*100)+'%', bc:pa<0.3?'b-r':pa<0.6?'b-y':'b-g', cc:'warn'},
-    {lbl:'Урожайность', val:(+d.factYield).toFixed(1), unit:'тн/га', plan:'план: '+(+d.planYield).toFixed(1)+' тн/га',
+    {lbl:'Валовый сбор',    val:fmtN(f.aggFactVal),  unit:'тн',   plan:'план: '+fmtN(f.aggPlanVal)+' тн',
+     pct:Math.round(pv*100)+'%',   bc:pv<0.3?'b-r':pv<0.6?'b-y':'b-g', cc:'warn'},
+    {lbl:'Площадь уборки',  val:fmtN(f.aggFactArea), unit:'га',   plan:'план: '+fmtN(f.aggPlanArea)+' га',
+     pct:Math.round(pa*100)+'%',   bc:pa<0.3?'b-r':pa<0.6?'b-y':'b-g', cc:'warn'},
+    {lbl:'Урожайность',     val:f.aggYield>0?f.aggYield.toFixed(2):'—', unit:'тн/га',
+     plan:'план: '+(f.aggPlanYield>0?f.aggPlanYield.toFixed(1):'—')+' тн/га',
      pct:(dy>=0?'+':'')+Math.round(dy*100)+'%', bc:dy>=0?'b-g':'b-r', cc:'ok'},
-    {lbl:'Остаток площади', val:fmtN(d.restArea), unit:'га', plan:'от '+fmtN(d.planArea)+' га',
-     pct:Math.round((1-pa)*100)+'%', bc:'b-y', cc:'warn'},
+    {lbl:'Остаток площади', val:fmtN(f.restArea>0?f.restArea:D.restArea), unit:'га',
+     plan:'от '+fmtN(f.aggPlanArea||D.planArea)+' га',
+     pct:Math.round(restPct*100)+'%', bc:'b-y', cc:'warn'},
   ];
   document.getElementById('kpiGrid').innerHTML = kpis.map(k=>`
     <div class="kc ${k.cc}">
@@ -398,35 +448,45 @@ function renderKPI() {
     </div>`).join('');
 }
 
+// ======= ПРОГРЕСС =======
 function renderProg() {
-  let rows = D.cultures;
-  if (activeCult !== 'all') rows = rows.filter((_,i)=>String(i)===String(activeCult));
-  if (activeIrrig !== 'all') rows = rows.filter(r=>r.irrig===activeIrrig);
-  if (!rows.length) { document.getElementById('progCards').innerHTML='<div class="empty">Нет данных</div>'; return; }
+  const {rows} = getFiltered();
+  if (!rows.length) {
+    document.getElementById('progCards').innerHTML = '<div class="empty">Нет данных для выбранного фильтра</div>';
+    return;
+  }
   document.getElementById('progCards').innerHTML = rows.map(r=>{
-    const pct = r.plan>0 ? Math.round(r.fact/r.plan*100) : 0;
-    const bc = pct>=50?'b-g':pct>=15?'b-y':'b-r';
+    const pct = r.planVal>0 ? Math.round(r.factVal/r.planVal*100) : 0;
+    const bc = pctBadge(pct);
+    const yldStr = r.yield>0 ? ` · ${r.yield.toFixed(2)} тн/га` : '';
     return `<div class="pr">
       <div class="pr-hdr">
         <span class="pr-name">${r.name}</span>
-        <span class="pr-nums"><strong>${fmtN(r.fact)}</strong> / ${fmtN(r.plan)} тн</span>
+        <span class="pr-nums"><strong>${fmtN(r.factVal)}</strong> / ${fmtN(r.planVal)} тн</span>
       </div>
-      <div class="pr-bg"><div class="pr-bar${r.fact===0?' hatch':''}" style="width:${r.fact>0?Math.max(pct,3):100}%"></div></div>
-      <span class="badge ${bc}" style="margin-top:4px">${pct}%</span>
+      <div class="pr-bg">
+        <div class="pr-bar${r.factVal===0?' hatch':''}" style="width:${r.factVal>0?Math.max(pct,3):100}%"></div>
+      </div>
+      <span class="badge ${bc}" style="margin-top:4px">${pct}%${yldStr}</span>
     </div>`;
   }).join('');
 }
 
+// ======= СЫРЬЁ =======
 function renderRaw() {
+  const {showRaw} = getFiltered();
+  document.getElementById('rawSection').style.display = showRaw ? '' : 'none';
+  if (!showRaw) return;
   const d = D;
   document.getElementById('rawGrid').innerHTML = [
-    {l:'Переработка',v:fmtN(d.perek)},
-    {l:'Собств. сырьё',v:fmtN(d.ownRaw)},
-    {l:'Утилизация',v:fmtN(d.util)},
-    {l:'Реализация',v:fmtN(d.realiz)},
+    {l:'Переработка', v:fmtN(d.perek)},
+    {l:'Собств. сырьё', v:fmtN(d.ownRaw)},
+    {l:'Утилизация', v:fmtN(d.util)},
+    {l:'Реализация', v:fmtN(d.realiz)},
   ].map(r=>`<div class="ri"><div class="ri-lbl">${r.l}</div><div class="ri-val">${r.v} <span>тн</span></div></div>`).join('');
 }
 
+// ======= ФИНОМЕТР =======
 function renderFino() {
   const fino = D.fino.filter(f=>f.value>0);
   if (finoChart) { finoChart.destroy(); finoChart=null; }
@@ -442,13 +502,22 @@ function renderFino() {
   ).join('');
 }
 
+// ======= ЕЖЕДНЕВНО =======
 function renderDaily() {
   const rows = D.daily26.filter(r=>r.date&&(r.val||r.fino));
-  const maxV = Math.max(...rows.map(r=>r.val||0));
   const hasFact = rows.filter(r=>r.val);
   const total = hasFact.reduce((s,r)=>s+(r.val||0),0);
+  const maxV  = Math.max(...hasFact.map(r=>r.val));
+
+  // Заголовок с учётом фильтра
+  const cultName = activeCult !== 'all' && D.cultures[activeCult] ? D.cultures[activeCult].name : null;
   document.getElementById('dailyInfo').innerHTML =
-    `<strong>Итого за сезон:</strong> ${fmtN(total)} тн · <strong>Дней с данными:</strong> ${hasFact.length}`;
+    `<strong>Итого за сезон:</strong> ${fmtN(total)} тн · <strong>Дней:</strong> ${hasFact.length}`+
+    (cultName ? ` · <span class="cult-tag">${cultName}</span>` : '');
+
+  // Показываем примечание если выбрана конкретная культура
+  document.getElementById('dailyNote').style.display = activeCult !== 'all' ? '' : 'none';
+
   document.getElementById('dailyList').innerHTML = rows.map(r=>{
     const w = maxV>0&&r.val ? Math.round(r.val/maxV*100) : 0;
     return `<div class="di">
@@ -462,8 +531,11 @@ function renderDaily() {
   }).join('');
 }
 
+// ======= ДИНАМИКА =======
 function renderCompare() {
-  renderCmpChart(); renderDailyComp(); renderInsight();
+  renderCmpChart();
+  renderDailyComp();
+  renderInsight();
 }
 
 function renderCmpChart() {
@@ -473,12 +545,38 @@ function renderCmpChart() {
   if (cmpMode==='daily') { document.getElementById('cmpCard').style.display='none'; return; }
   document.getElementById('cmpCard').style.display='';
   document.getElementById('cmpDailyCard').style.display='none';
-  const vals = h.map(x=>isYield?x.yield:x.total);
-  const colors = h.map(x=>x.year===2026?'#2d6a2d':x.year===2025?'#4a9b3f':'#a8d89e');
-  document.getElementById('cmpTitle').textContent = isYield?'Урожайность 2019–2026, тн/га':'Валовый сбор 2019–2026, тн';
+  document.getElementById('cmpDailyNote').style.display='none';
+
+  // Если выбрана культура — показываем её plan/fact на фоне истории
+  const {rows, aggFactVal, aggPlanVal, aggFactArea, aggPlanArea, aggYield} = getFiltered();
+  const cultName = activeCult !== 'all' && rows.length ? rows[0].name : null;
+
+  let labels, vals, colors;
+  if (isYield) {
+    labels = h.map(x=>x.year);
+    vals   = h.map(x=> {
+      if (x.year===2026 && cultName) return aggYield||x.yield;
+      return x.yield;
+    });
+    colors = h.map(x=>x.year===2026?'#2d6a2d':x.year===2025?'#4a9b3f':'#a8d89e');
+    document.getElementById('cmpTitle').textContent = cultName
+      ? `Урожайность 2019–2026 · ${cultName}`
+      : 'Урожайность 2019–2026, тн/га';
+  } else {
+    labels = h.map(x=>x.year);
+    vals   = h.map(x=> {
+      if (x.year===2026 && cultName) return aggFactVal||x.total;
+      return x.total;
+    });
+    colors = h.map(x=>x.year===2026?'#2d6a2d':x.year===2025?'#4a9b3f':'#a8d89e');
+    document.getElementById('cmpTitle').textContent = cultName
+      ? `Валовый сбор 2019–2026 · ${cultName}`
+      : 'Валовый сбор 2019–2026, тн';
+  }
+
   cChart = new Chart(document.getElementById('cCompare').getContext('2d'),{
     type:'bar',
-    data:{labels:h.map(x=>x.year),datasets:[{data:vals,backgroundColor:colors,borderRadius:6}]},
+    data:{labels, datasets:[{data:vals, backgroundColor:colors, borderRadius:6}]},
     options:{responsive:true,maintainAspectRatio:false,
       plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` ${fmtN(ctx.raw)} ${isYield?'тн/га':'тн'}`}}},
       scales:{y:{beginAtZero:true,grid:{color:'#e8f4e5'},ticks:{font:{size:10}}},x:{grid:{display:false},ticks:{font:{size:10}}}}}
@@ -490,16 +588,24 @@ function renderDailyComp() {
   if (cmpMode!=='daily') return;
   document.getElementById('cmpCard').style.display='none';
   document.getElementById('cmpDailyCard').style.display='';
+
   const d26 = D.daily26.filter(r=>r.val);
   const d25 = D.daily25.filter(r=>r.val);
-  const maxD = Math.max(d26.length,d25.length);
+  const maxD = Math.max(d26.length, d25.length);
+
+  const cultName = activeCult !== 'all' && D.cultures[activeCult] ? D.cultures[activeCult].name : null;
+  document.getElementById('cmpDailyTitle').textContent = cultName
+    ? `Ежедневный сбор 2025 vs 2026 · ${cultName}`
+    : 'Ежедневный сбор: 2025 vs 2026';
+  document.getElementById('cmpDailyNote').style.display = cultName ? '' : 'none';
+
   dChart = new Chart(document.getElementById('cDailyComp').getContext('2d'),{
     type:'line',
     data:{
-      labels:Array.from({length:maxD},(_,i)=>'День '+(i+1)),
+      labels: Array.from({length:maxD},(_,i)=>'День '+(i+1)),
       datasets:[
-        {label:'2026',data:d26.map(r=>r.val),borderColor:'#2d6a2d',backgroundColor:'rgba(45,106,45,.1)',tension:.35,pointRadius:4,pointBackgroundColor:'#2d6a2d',borderWidth:2.5},
-        {label:'2025',data:d25.map(r=>r.val),borderColor:'#7ec86b',backgroundColor:'rgba(126,200,107,.08)',tension:.35,pointRadius:3,pointBackgroundColor:'#7ec86b',borderWidth:2}
+        {label:'2026', data:d26.map(r=>r.val), borderColor:'#2d6a2d', backgroundColor:'rgba(45,106,45,.1)', tension:.35, pointRadius:4, pointBackgroundColor:'#2d6a2d', borderWidth:2.5},
+        {label:'2025', data:d25.map(r=>r.val), borderColor:'#7ec86b', backgroundColor:'rgba(126,200,107,.08)', tension:.35, pointRadius:3, pointBackgroundColor:'#7ec86b', borderWidth:2}
       ]
     },
     options:{responsive:true,maintainAspectRatio:false,
@@ -509,27 +615,38 @@ function renderDailyComp() {
 }
 
 function renderInsight() {
-  const d = D;
-  const t26 = d.daily26.filter(r=>r.val).reduce((s,r)=>s+(r.val||0),0);
-  const t25 = d.daily25.filter(r=>r.val).reduce((s,r)=>s+(r.val||0),0);
-  const n26 = d.daily26.filter(r=>r.val).length;
-  const n25 = d.daily25.filter(r=>r.val).length;
-  const y26 = d.hist.find(h=>h.year===2026);
-  const y25 = d.hist.find(h=>h.year===2025);
+  const {aggFactVal, aggPlanVal, aggYield, aggPlanYield, rows} = getFiltered();
+  const cultName = activeCult!=='all' && rows.length ? rows[0].name : null;
+
+  const t26 = D.daily26.filter(r=>r.val).reduce((s,r)=>s+(r.val||0),0);
+  const t25 = D.daily25.filter(r=>r.val).reduce((s,r)=>s+(r.val||0),0);
+  const n26 = D.daily26.filter(r=>r.val).length;
+  const n25 = D.daily25.filter(r=>r.val).length;
+  const y26 = D.hist.find(h=>h.year===2026);
+  const y25 = D.hist.find(h=>h.year===2025);
+
   let txt = '';
-  if (y26&&y25) {
-    const diff = ((y26.yield-y25.yield)/y25.yield*100).toFixed(1);
-    txt += `<strong>Урожайность 2026:</strong> ${(+y26.yield).toFixed(2)} тн/га (${diff>0?'+':''}${diff}% к 2025). `;
+  if (cultName) {
+    const pct = aggPlanVal>0 ? (aggFactVal/aggPlanVal*100).toFixed(1) : 0;
+    txt += `<strong>${cultName}:</strong> факт ${fmtN(aggFactVal)} тн из ${fmtN(aggPlanVal)} тн (${pct}%). `;
+    if (aggYield>0) txt += `Урожайность: ${aggYield.toFixed(2)} тн/га. `;
+  } else {
+    if (y26&&y25) {
+      const diff = ((y26.yield-y25.yield)/y25.yield*100).toFixed(1);
+      txt += `<strong>Урожайность 2026:</strong> ${y26.yield.toFixed(2)} тн/га (${diff>0?'+':''}${diff}% к 2025). `;
+    }
+    if (n26&&n25) txt += `<strong>Ср. суточный:</strong> 2026 = ${(t26/n26).toFixed(1)} тн, 2025 = ${(t25/n25).toFixed(1)} тн.`;
   }
-  if (n26&&n25) txt += `<strong>Ср. суточный:</strong> 2026 = ${(t26/n26).toFixed(1)} тн, 2025 = ${(t25/n25).toFixed(1)} тн.`;
-  document.getElementById('cmpInsight').innerHTML = txt || '';
+  document.getElementById('cmpInsight').innerHTML = txt;
 }
 
+// ======= НАВИГАЦИЯ =======
 function setCmpMode(mode, el) {
   cmpMode = mode;
   document.querySelectorAll('.ct-btn').forEach(b=>b.classList.remove('active'));
   el.classList.add('active');
-  renderCmpChart(); renderDailyComp();
+  renderCmpChart();
+  renderDailyComp();
 }
 
 function switchTab(name, el) {
@@ -540,9 +657,8 @@ function switchTab(name, el) {
   if (name==='compare') renderCompare();
 }
 
-// Запуск
+// Старт
 autoLoad();
 </script>
-
-
-</body></html>
+</body>
+</html>
